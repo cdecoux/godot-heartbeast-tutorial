@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://World/Grass.png" type="Texture" id=1]
+[ext_resource path="res://World/Grass.gd" type="Script" id=2]
+[ext_resource path="res://Effects/GrassEffect.png" type="Texture" id=3]
+[ext_resource path="res://Overlap/Hurtbox.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": false,
+"name": "GrassEffect",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 8, 8 )
+
+[node name="GrassNode" type="Node2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Object" type="StaticBody2D" parent="."]
+position = Vector2( 8, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Object"]
+position = Vector2( 0, 4 )
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Object"]
+texture = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="GrassEffect" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( -8, -16 )
+frames = SubResource( 7 )
+animation = "GrassEffect"
+centered = false
+
+[node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+position = Vector2( 8, 0 )
+
+[node name="HurtboxShape" parent="Hurtbox" index="0"]
+scale = Vector2( 0.8, 0.8 )
+shape = SubResource( 8 )
+[connection signal="animation_finished" from="GrassEffect" to="." method="_on_GrassEffect_animation_finished"]
+[connection signal="hit" from="Hurtbox" to="." method="_on_Hurtbox_hit"]
+
+[editable path="Hurtbox"]
