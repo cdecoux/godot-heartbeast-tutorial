@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Hitbox",
 "language": "GDScript",
-"path": "res://Overlap/Hitbox.gd"
+"path": "res://assets/mechanics/hitbox/Hitbox.gd"
 }, {
 "base": "Area2D",
 "class": "Hurtbox",
 "language": "GDScript",
-"path": "res://Overlap/Hurtbox.gd"
+"path": "res://assets/mechanics/hurtbox/Hurtbox.gd"
 } ]
 _global_script_class_icons={
 "Hitbox": "",
@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="HeartBeastRPGTutorial"
-run/main_scene="res://World.tscn"
+run/main_scene="res://levels/World.tscn"
 
 [display]
 
@@ -110,7 +110,3 @@ roll={
 2d_physics/layer_3="PlayerHurtbox"
 2d_physics/layer_4="EnemyHurtbox"
 2d_physics/layer_12="Enemies"
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"

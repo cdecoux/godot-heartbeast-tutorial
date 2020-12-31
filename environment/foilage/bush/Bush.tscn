@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://environment/foilage/bush/Bush.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="Bush" type="StaticBody2D"]
+position = Vector2( 8, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Object" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+rotation = -1.57079
+scale = Vector2( 0.5, 1 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Object"]
+position = Vector2( 8, -2.47955e-05 )
+rotation = 1.57078
+scale = Vector2( 1, 2 )
+texture = ExtResource( 1 )
