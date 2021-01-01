@@ -1,5 +1,6 @@
 extends TileMap
 
+export(int) var test = 1
 
 func _ready():
 	var used_cells = get_used_cells()
