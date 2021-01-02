@@ -1,13 +1,13 @@
 extends TileMap
 
-export(int) var test = 1
+export(String) var base_path = "res://"
 
 func _ready():
 	var used_cells = get_used_cells()
 	for cell in used_cells:
 		var type_id = get_cell(cell.x, cell.y)
 		var name = tile_set.tile_get_name(type_id)
-		var scene_path = "res://%s.tscn" % name
+		var scene_path = "%s/%s/%s.tscn" % [base_path, name, name]
 		
 		if (File.new().file_exists(scene_path)):
 			var tile_instance: Node2D = load(scene_path).instance()
